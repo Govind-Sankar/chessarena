@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "71958973484",
+    "firebase_url": "https://chessarena-e3c06-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "chessarena-e3c06",
+    "storage_bucket": "chessarena-e3c06.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71958973484:android:91437c8ac59d806e0b9589",
+        "android_client_info": {
+          "package_name": "com.govindsankar.chessarena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR0boQ5rVR5pctQUWglX-xKfRTeXsrtZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71958973484:android:66ee0358d1319f7b0b9589",
+        "android_client_info": {
+          "package_name": "com.govindsankar.chessarena.chessarena"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR0boQ5rVR5pctQUWglX-xKfRTeXsrtZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
