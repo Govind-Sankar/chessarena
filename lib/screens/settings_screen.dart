@@ -13,6 +13,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     {'name': 'Light', 'mode': AppThemeMode.light},
     {'name': 'Dark', 'mode': AppThemeMode.dark},
     {'name': 'System', 'mode': AppThemeMode.system},
+    // {'name': 'Amoled', 'mode': AppThemeMode.amoled},
   ];
 
   @override
@@ -45,6 +46,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 onTap: () => _showThemeDialog(themeManager),
               ),
               const Divider(),
+              ListTile(
+                title: const Text('Accent Color'),
+                subtitle: Text(_getAccentName(themeManager.accentColor)),
+                leading: const Icon(Icons.color_lens_outlined),
+                onTap: () => _showAccentDialog(themeManager),
+              ),
+              const Divider(),
             ],
           ),
         );
@@ -57,8 +65,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
       case AppThemeMode.light: return 'Light';
       case AppThemeMode.dark: return 'Dark';
       case AppThemeMode.system: return 'System';
+      // case AppThemeMode.amoled: return 'Amoled';
       default: return 'System';
     }
+  }
+
+  String _getAccentName(AppAccentColor color) {
+    switch (color) {
+      case AppAccentColor.red: return 'Red';
+      case AppAccentColor.green: return 'Green';
+      case AppAccentColor.violet: return 'Violet';
+      case AppAccentColor.blue:
+      default: return 'Blue';
+    }
+  }
+
+  void _showAccentDialog(ThemeManager themeManager) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Choose Accent Color'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: AppAccentColor.values.map((color) {
+            return RadioListTile<AppAccentColor>(
+              title: Text(_getAccentName(color)),
+              value: color,
+              groupValue: themeManager.accentColor,
+              onChanged: (value) {
+                themeManager.setAccentColor(value!);
+                Navigator.pop(context);
+              },
+            );
+          }).toList(),
+        ),
+      ),
+    );
   }
 
   void _showThemeDialog(ThemeManager themeManager) {

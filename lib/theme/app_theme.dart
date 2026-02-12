@@ -1,58 +1,62 @@
+import 'package:chessarena/theme/theme_manager.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryBlue = Color(0xFF455A64); // Blue Grey 700
+  static Color getAccentColor(AppAccentColor accent) {
+    switch (accent) {
+      case AppAccentColor.red:
+        return const Color(0xFFB71C1C);
+      case AppAccentColor.green:
+        return const Color(0xFF1B5E20);
+      case AppAccentColor.violet:
+        return const Color(0xFF4A148C);
+      case AppAccentColor.blue:
+      default:
+        return const Color(0xFF455A64);
+    }
+  }
 
-  static ThemeData lightTheme() {
+  static ThemeData lightTheme(AppAccentColor accent) {
+    final primary = getAccentColor(accent);
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryBlue,
+        seedColor: primary,
         brightness: Brightness.light,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryBlue,
+          backgroundColor: primary,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
         ),
       ),
     );
   }
 
-  static ThemeData darkTheme() {
+  static ThemeData darkTheme(AppAccentColor accent) {
+    final primary = getAccentColor(accent);
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryBlue,
+        seedColor: primary,
         brightness: Brightness.dark,
-        surface: const Color(0xFF1E272C),
       ),
-      scaffoldBackgroundColor: const Color(0xFF12171A),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryBlue,
+          backgroundColor: primary,
           foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-          textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
         ),
       ),
     );
   }
 
-  static ThemeData amoledTheme() {
+  static ThemeData amoledTheme(AppAccentColor accent) {
+    final primary = getAccentColor(accent);
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryBlue,
+        seedColor: primary,
         brightness: Brightness.dark,
         surface: Colors.black,
         onSurface: Colors.white,
@@ -71,7 +75,7 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: primaryBlue,
+          backgroundColor: primary,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
           textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

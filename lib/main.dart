@@ -10,6 +10,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final themeManager = ThemeManager();
+  await themeManager.loadTheme();
   runApp(const ChessApp());
 }
 
@@ -23,20 +25,22 @@ class ChessApp extends StatelessWidget {
       builder: (context, _) {
         final themeManager = ThemeManager();
 
+        final accent = themeManager.accentColor;
+
         ThemeData theme;
         if (themeManager.themeMode == AppThemeMode.amoled) {
-          theme = AppTheme.amoledTheme();
+          theme = AppTheme.amoledTheme(accent);
         } else if (themeManager.themeMode == AppThemeMode.dark) {
-          theme = AppTheme.darkTheme();
+          theme = AppTheme.darkTheme(accent);
         } else {
-          theme = AppTheme.lightTheme();
+          theme = AppTheme.lightTheme(accent);
         }
 
         return MaterialApp(
           title: 'Chess',
           debugShowCheckedModeBanner: false,
           theme: theme,
-          darkTheme: AppTheme.darkTheme(),
+          darkTheme: AppTheme.darkTheme(accent),
           themeMode: themeManager.currentThemeMode,
           home: const SplashScreen(),
         );

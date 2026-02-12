@@ -21,9 +21,12 @@ class ChessBoard extends StatelessWidget {
     final theme = Theme.of(context);
 
     // Fixed slate/blue-grey theme for the board
-    final darkSquareColor = Colors.blueGrey[800]!;
-    final lightSquareColor = Colors.blueGrey[300]!;
-    final selectedColor = Colors.amber[600]!;
+    // final darkSquareColor = Colors.blueGrey[800]!;
+    // final lightSquareColor = Colors.blueGrey[300]!;
+    // final selectedColor = Colors.amber[600]!;
+    final darkSquareColor = theme.colorScheme.primary;
+    final lightSquareColor = theme.colorScheme.primary.withOpacity(0.3);
+    final selectedColor = theme.colorScheme.secondary;
 
     return LayoutBuilder(
       builder: (context, constraints) {
