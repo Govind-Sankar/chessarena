@@ -1,16 +1,61 @@
-# chessarena
+# Chess Arena
 
-A simple flutter online multiplayer chess game.
+A modern chess app built with Flutter featuring both Singleplayer AI and real-time Multiplayer modes.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+### Singleplayer Mode
+- Play against AI
+- Multiple difficulty levels (Easy, Medium, Hard)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Multiplayer Mode
+- Create private game rooms (6-digit code) and Join via code
+- Online matchmaking with Real-time move synchronization
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## Screenshots
+
+![Home Screen](assets/screenshots/home.png)
+![Singleplayer](assets/screenshots/singleplayer.png)
+![Multiplayer](assets/screenshots/multiplayer.png)
+![Settings](assets/screenshots/settings.png)
+
+---
+
+## Installation
+
+1. Clone the repository:
+```
+git clone [https://github.com/your-username/chess-arena.git](https://github.com/your-username/chess-arena.git)
+```
+
+2. Install dependencies:
+
+```
+flutter pub get
+```
+
+3. Run the app:
+
+```
+flutter run
+```
+
+---
+
+## Build APK
+
+To generate release APK:
+
+```
+flutter build apk --release
+```
+
+Output file:
+
+```
+build/app/outputs/flutter-apk/app-release.apk
+```

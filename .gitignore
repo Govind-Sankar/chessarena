@@ -93,3 +93,4 @@ app.*.map.json
 /android/app/release
 
 digest.txt
+/devtools_options.yaml
