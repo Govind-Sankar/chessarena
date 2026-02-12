@@ -2,8 +2,6 @@
 
 A modern chess app built with Flutter featuring both Singleplayer AI and real-time Multiplayer modes.
 
----
-
 ## Features
 
 ### Singleplayer Mode
@@ -18,10 +16,7 @@ A modern chess app built with Flutter featuring both Singleplayer AI and real-ti
 
 ## Screenshots
 
-![Home Screen](assets/screenshots/home.png)
-![Singleplayer](assets/screenshots/singleplayer.png)
-![Multiplayer](assets/screenshots/multiplayer.png)
-![Settings](assets/screenshots/settings.png)
+<img src="assets/screenshots/home.png" width="300" /> <img src="assets/screenshots/singleplayer.png" width="300" /> <img src="assets/screenshots/multiplayer.png" width="300" /> <img src="assets/screenshots/settings.png" width="300" />
 
 ---
 
