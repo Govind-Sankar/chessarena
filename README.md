@@ -12,13 +12,9 @@ A modern chess app built with Flutter featuring both Singleplayer AI and real-ti
 - Create private game rooms (6-digit code) and Join via code
 - Online matchmaking with Real-time move synchronization
 
----
-
 ## Screenshots
 
 <img src="assets/screenshots/home.png" width="300" /> <img src="assets/screenshots/singleplayer.png" width="300" /> <img src="assets/screenshots/multiplayer.png" width="300" /> <img src="assets/screenshots/settings.png" width="300" />
-
----
 
 ## Installation
 
@@ -38,8 +34,6 @@ flutter pub get
 ```
 flutter run
 ```
-
----
 
 ## Build APK
 
