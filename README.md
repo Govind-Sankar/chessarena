@@ -20,7 +20,7 @@ A modern chess app built with Flutter featuring both Singleplayer AI and real-ti
 
 1. Clone the repository:
 ```
-git clone [https://github.com/your-username/chess-arena.git](https://github.com/your-username/chess-arena.git)
+git clone https://github.com/Govind-Sankar/chessarena.git
 ```
 
 2. Install dependencies:
