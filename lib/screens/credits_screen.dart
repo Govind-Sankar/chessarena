@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../widgets/desktop_frame.dart';
 
 class CreditsScreen extends StatelessWidget {
   const CreditsScreen({super.key});
@@ -12,66 +13,68 @@ class CreditsScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Credits',
-          style: GoogleFonts.poppins(
+    return DesktopFrame(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            'Credits',
+            style: GoogleFonts.poppins(
               fontWeight: FontWeight.w600,
               color: colorScheme.onSurface,
-          ),
-        ),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            Icon(
-              Symbols.chess_knight,
-              size: 80,
-              weight: 600,
-              color: colorScheme.onSurface,
             ),
-            const SizedBox(height: 16),
-            Text(
-              'Chess Arena',
-              style: GoogleFonts.poppins(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
+          ),
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              Icon(
+                Symbols.chess_knight,
+                size: 80,
+                weight: 600,
                 color: colorScheme.onSurface,
               ),
-            ),
-            const SizedBox(height: 32),
-            Text(
-              'A modern, multiplayer chess experience built with Flutter and Firebase.\n\n'
-                  'Made by Govind Sankar.',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.inter(
-                fontSize: 16,
-                height: 1.5,
-                color: colorScheme.onSurfaceVariant,
+              const SizedBox(height: 16),
+              Text(
+                'Chess Arena',
+                style: GoogleFonts.poppins(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: colorScheme.onSurface,
+                ),
               ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 40.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _SocialButton(
-                    icon: FontAwesomeIcons.github,
-                    onPressed: _openGitHub,
-                    colorScheme: colorScheme,
-                    tooltip: 'GitHub Repository',
-                  ),
-                ],
+              const SizedBox(height: 32),
+              Text(
+                'A modern, multiplayer chess experience built with Flutter and Firebase.\n\n'
+                'Made by Govind Sankar.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  fontSize: 16,
+                  height: 1.5,
+                  color: colorScheme.onSurfaceVariant,
+                ),
               ),
-            ),
-          ],
+              const Spacer(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _SocialButton(
+                      icon: FontAwesomeIcons.github,
+                      onPressed: _openGitHub,
+                      colorScheme: colorScheme,
+                      tooltip: 'GitHub Repository',
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

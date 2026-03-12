@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/theme_manager.dart';
+import '../widgets/desktop_frame.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -23,37 +24,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return ListenableBuilder(
       listenable: themeManager,
       builder: (context, _) {
-        return Scaffold(
-          appBar: AppBar(
-            title: const Text('Settings'),
-          ),
-          body: ListView(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Appearance',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+        return DesktopFrame(
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text('Settings'),
+            ),
+            body: ListView(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Appearance',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-              ListTile(
-                title: const Text('Theme'),
-                subtitle: Text(_getThemeName(themeManager.themeMode)),
-                leading: const Icon(Icons.palette_outlined),
-                onTap: () => _showThemeDialog(themeManager),
-              ),
-              const Divider(),
-              ListTile(
-                title: const Text('Accent Color'),
-                subtitle: Text(_getAccentName(themeManager.accentColor)),
-                leading: const Icon(Icons.color_lens_outlined),
-                onTap: () => _showAccentDialog(themeManager),
-              ),
-              const Divider(),
-            ],
+                ListTile(
+                  title: const Text('Theme'),
+                  subtitle: Text(_getThemeName(themeManager.themeMode)),
+                  leading: const Icon(Icons.palette_outlined),
+                  onTap: () => _showThemeDialog(themeManager),
+                ),
+                const Divider(),
+                ListTile(
+                  title: const Text('Accent Color'),
+                  subtitle: Text(_getAccentName(themeManager.accentColor)),
+                  leading: const Icon(Icons.color_lens_outlined),
+                  onTap: () => _showAccentDialog(themeManager),
+                ),
+                const Divider(),
+              ],
+            ),
           ),
         );
       },

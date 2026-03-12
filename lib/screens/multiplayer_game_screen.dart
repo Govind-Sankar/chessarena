@@ -5,6 +5,7 @@ import 'package:chess/chess.dart' as chess_lib;
 import '../logic/chess_game_logic.dart';
 import '../logic/multiplayer_provider.dart';
 import '../widgets/chess_board.dart';
+import '../widgets/desktop_frame.dart';
 
 class MultiplayerGameScreen extends StatefulWidget {
   final String gameCode;
@@ -236,47 +237,95 @@ class _MultiplayerGameScreenState extends State<MultiplayerGameScreen> {
           Navigator.of(context).pop();
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Multiplayer'),
-          actions: [
-            if (widget.showRoomCode)
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Text(
-                    'Code: ${widget.gameCode}',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
+      child: DesktopFrame(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Multiplayer'),
+            actions: [
+              if (widget.showRoomCode)
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0),
+                    child: Text(
+                      'Code: ${widget.gameCode}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
-              ),
-          ],
-        ),
-        body: Column(
-          children: [
-            const SizedBox(height: 20),
-            if (_isWaitingForOpponent)
-              const Column(children: [CircularProgressIndicator(), SizedBox(height: 20), Text('Waiting for opponent to join...')])
-            else
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Text("Turn: ${_logic.turn}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const SizedBox(width: 20),
-                Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(20)),
-                    child: Text(widget.isCreator ? "Playing as White" : "Playing as Black",
-                        style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold))),
-              ]),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ChessBoard(board: _logic.board, onSquareTap: _onSquareTap, selectedSquare: _selectedSquare, validMoves: _validMoves),
-            ),
-            const Spacer(),
-          ],
+            ],
+          ),
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              const boardPadding = 32.0;
+              final statusHeight = _isWaitingForOpponent ? 120.0 : 76.0;
+              final boardSize = (constraints.maxHeight - statusHeight)
+                  .clamp(0.0, constraints.maxWidth - boardPadding);
+
+              return Column(
+                children: [
+                  const SizedBox(height: 20),
+                  if (_isWaitingForOpponent)
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(height: 20),
+                          Text('Waiting for opponent to join...'),
+                        ],
+                      ),
+                    )
+                  else
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 20,
+                      runSpacing: 12,
+                      children: [
+                        Text(
+                          "Turn: ${_logic.turn}",
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            widget.isCreator ? "Playing as White" : "Playing as Black",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SizedBox.square(
+                          dimension: boardSize,
+                          child: ChessBoard(
+                            board: _logic.board,
+                            onSquareTap: _onSquareTap,
+                            selectedSquare: _selectedSquare,
+                            validMoves: _validMoves,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

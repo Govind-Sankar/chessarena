@@ -6,40 +6,43 @@ import 'singleplayer_home_screen.dart';
 import 'multiplayer_home_screen.dart';
 import 'package:chessarena/widgets/menu_button.dart';
 import 'package:chessarena/widgets/arena_layout.dart';
+import 'package:chessarena/widgets/desktop_frame.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const CreditsScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SettingsScreen()),
-              );
-            },
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: const ArenaLayout(
-        child: _HomeButtons(),
+    return DesktopFrame(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.info_outline),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CreditsScreen()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.settings_outlined),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                );
+              },
+            ),
+            const SizedBox(width: 10),
+          ],
+        ),
+        body: const ArenaLayout(
+          child: _HomeButtons(),
+        ),
       ),
     );
   }

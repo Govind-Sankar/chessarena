@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chess/chess.dart' as chess_lib;
 import '../logic/chess_game_logic.dart';
 import '../widgets/chess_board.dart';
+import '../widgets/desktop_frame.dart';
 
 class GameScreen extends StatefulWidget {
   final int difficulty;
@@ -157,61 +158,79 @@ class _GameScreenState extends State<GameScreen> {
           Navigator.of(context).pop();
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Singleplayer'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: () {
-                setState(() {
-                  _logic.reset();
-                  _clearSelection();
-                });
-              },
-            ),
-          ],
-        ),
-        body: Column(
-          children: [
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Turn: ${_logic.turn}",
-                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(width: 20),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(20),
+      child: DesktopFrame(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Singleplayer'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: () {
+                  setState(() {
+                    _logic.reset();
+                    _clearSelection();
+                  });
+                },
+              ),
+            ],
+          ),
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              const boardPadding = 32.0;
+              const headerHeight = 76.0;
+              final boardSize = (constraints.maxHeight - headerHeight)
+                  .clamp(0.0, constraints.maxWidth - boardPadding);
+
+              return Column(
+                children: [
+                  const SizedBox(height: 20),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 20,
+                    runSpacing: 12,
+                    children: [
+                      Text(
+                        "Turn: ${_logic.turn}",
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          _difficultyDepth == 1 ? "Easy" : _difficultyDepth == 2 ? "Medium" : "Hard",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).colorScheme.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  child: Text(
-                    _difficultyDepth == 1 ? "Easy" : _difficultyDepth == 2 ? "Medium" : "Hard",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Theme.of(context).colorScheme.primary,
-                      fontWeight: FontWeight.bold,
+                  Expanded(
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SizedBox.square(
+                          dimension: boardSize,
+                          child: ChessBoard(
+                            board: _logic.board,
+                            onSquareTap: _onSquareTap,
+                            selectedSquare: _selectedSquare,
+                            validMoves: _validMoves,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ChessBoard(
-                board: _logic.board,
-                onSquareTap: _onSquareTap,
-                selectedSquare: _selectedSquare,
-                validMoves: _validMoves,
-              ),
-            ),
-            const Spacer(),
-          ],
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

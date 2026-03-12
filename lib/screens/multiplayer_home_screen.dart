@@ -9,6 +9,7 @@ import 'network_error_screen.dart';
 import 'dart:math';
 import '../widgets/arena_layout.dart';
 import '../widgets/menu_button.dart';
+import '../widgets/desktop_frame.dart';
 
 class MultiplayerHomeScreen extends StatelessWidget {
   const MultiplayerHomeScreen({super.key});
@@ -47,83 +48,85 @@ class MultiplayerHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const CreditsScreen()),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const SettingsScreen()),
-              );
-            },
-          ),
-          const SizedBox(width: 10),
-        ],
-      ),
-      body: ArenaLayout(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            MenuButton(
-              text: 'CREATE GAME',
-              onPressed: () => _createGame(context),
-            ),
-            const SizedBox(height: 10),
-            MenuButton(
-              text: 'JOIN GAME',
-              onPressed: () async {
-                if (await _checkConnectivity(context)) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const JoinGameScreen()),
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: 10),
-            MenuButton(
-              text: 'JOIN ONLINE',
-              onPressed: () async {
-                if (!await _checkConnectivity(context)) return;
-                final provider = MultiplayerProvider();
-                final result = await provider.joinOnlineMatch();
-
-                if (context.mounted) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => MultiplayerGameScreen(
-                        gameCode: result['roomId'],
-                        isCreator: result['isCreator'],
-                        showRoomCode: false,
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
-            TextButton(
+    return DesktopFrame(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.info_outline),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const CreditsScreen()),
+                );
               },
-              child: const Text('Back'),
             ),
+            IconButton(
+              icon: const Icon(Icons.settings_outlined),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                );
+              },
+            ),
+            const SizedBox(width: 10),
           ],
+        ),
+        body: ArenaLayout(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              MenuButton(
+                text: 'CREATE GAME',
+                onPressed: () => _createGame(context),
+              ),
+              const SizedBox(height: 10),
+              MenuButton(
+                text: 'JOIN GAME',
+                onPressed: () async {
+                  if (await _checkConnectivity(context)) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const JoinGameScreen()),
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 10),
+              MenuButton(
+                text: 'JOIN ONLINE',
+                onPressed: () async {
+                  if (!await _checkConnectivity(context)) return;
+                  final provider = MultiplayerProvider();
+                  final result = await provider.joinOnlineMatch();
+
+                  if (context.mounted) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => MultiplayerGameScreen(
+                          gameCode: result['roomId'],
+                          isCreator: result['isCreator'],
+                          showRoomCode: false,
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Back'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -13,6 +13,10 @@
 migrate_working_dir/
 *.lock
 
+# Firebase
+.firebase/
+.firebaserc.local
+
 # IntelliJ / Android Studio
 .idea/
 *.iml
@@ -73,7 +77,6 @@ linux/flutter/ephemeral/
 linux/build/
 
 # Web
-lib/generated_plugin_registrant.dart
 
 # Obfuscation
 app.*.symbols

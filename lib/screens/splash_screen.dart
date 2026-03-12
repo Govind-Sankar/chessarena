@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'dart:async';
 import 'home_screen.dart';
+import '../widgets/desktop_frame.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -51,70 +52,73 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DesktopFrame(
       backgroundColor: Colors.red,
-      body: Stack(
-        children: [
-          Center(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Icon(
-                  Symbols.chess_knight,
-                  color: Colors.white,
-                  size: 128,
-                ),
-                ClipRect(
-                  child: SlideTransition(
-                    position: _slideAnimation,
-                    child: const Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'CHESS',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 48,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 8,
-                            height: 1.0,
+      child: Scaffold(
+        backgroundColor: Colors.red,
+        body: Stack(
+          children: [
+            Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Symbols.chess_knight,
+                    color: Colors.white,
+                    size: 128,
+                  ),
+                  ClipRect(
+                    child: SlideTransition(
+                      position: _slideAnimation,
+                      child: const Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'CHESS',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 48,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 8,
+                              height: 1.0,
+                            ),
                           ),
-                        ),
-                        Text(
-                          'ARENA',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 48,
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: 8,
-                            height: 1.0,
+                          Text(
+                            'ARENA',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 48,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 8,
+                              height: 1.0,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const Positioned(
-            bottom: 20,
-            left: 0,
-            right: 0,
-            child: SafeArea(
-              child: Text(
-                'Made by Govind Sankar',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.white70,
+            const Positioned(
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: SafeArea(
+                child: Text(
+                  'Made by Govind Sankar',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.white70,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
