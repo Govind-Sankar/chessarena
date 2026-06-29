@@ -13,8 +13,8 @@ A modern chess app built with Flutter featuring both Singleplayer AI and real-ti
 - Online matchmaking with Real-time move synchronization
 
 ## Screenshots
-
-<img src="assets/screenshots/home.png" width="300" /> <img src="assets/screenshots/singleplayer.png" width="300" /> <img src="assets/screenshots/multiplayer.png" width="300" /> <img src="assets/screenshots/settings.png" width="300" />
+<img src="assets/images/ChessArena_MockUp.png" width="800" />
+<!-- <img src="assets/screenshots/home.png" width="300" /><img src="assets/screenshots/singleplayer.png" width="300" /><img src="assets/screenshots/multiplayer.png" width="300" /><img src="assets/screenshots/settings.png" width="300" /> -->
 
 ## Installation
 
