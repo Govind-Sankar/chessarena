@@ -2,6 +2,11 @@
 
 A modern chess app built with Flutter featuring both Singleplayer AI and real-time Multiplayer modes.
 
+#### Download on:
+<a href = https://github.com/Govind-Sankar/chessarena/releases>
+  <img src="assets/images/badge_github.png" width="200" />
+</a>
+  
 ## Features
 
 ### Singleplayer Mode
